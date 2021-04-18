@@ -1,0 +1,53 @@
+entity Agenda {
+	paciente Paciente,
+    dataHora LocalDate,
+    cor String
+    createDate LocalDate    
+}
+
+entity Paciente {
+	nome String,
+    dataNascimento LocalDate,
+    celular String,
+    cpf String,
+    anamnese String
+    queixaPrincipal String,
+    parceiro Parceiro,
+    createDate LocalDate    
+}
+
+entity Imagem {
+	urlImagem String,
+    createDate LocalDate
+}
+
+entity Tratamento {
+	dente String,
+    procedimento String,
+    valor Double
+}
+
+entity Atendimento { 
+	dataHora LocalDate,
+    procedimento String,
+    valorPago Double,
+    debito Double
+}
+
+entity Parceiro {
+	nome String,
+    responsavel String,
+    telefone String,
+    celular String,    
+}
+
+relationship OneToOne {
+	Agenda{paciente} to Paciente,
+    Paciente{parceiro} to Parceiro
+}
+
+relationship OneToMany {
+	Paciente to Tratamento,
+    Paciente to Atendimento,
+    Paciente to Imagem,    
+}
